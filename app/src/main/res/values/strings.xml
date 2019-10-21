@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">WeatherWoo</string>
+    <string name="forecast_icon">Forcast icon</string>
+</resources>
