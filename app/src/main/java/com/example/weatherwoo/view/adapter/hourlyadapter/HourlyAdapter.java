@@ -25,14 +25,14 @@ public class HourlyAdapter extends RecyclerView.Adapter<HourlyAdapter.HourlyView
 
     @NonNull
     @Override
-    public HourlyAdapter.HourlyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public HourlyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         context = parent.getContext();
-        View shhourly = LayoutInflater.from(context).inflate(
+        View view = LayoutInflater.from(context).inflate(
                 R.layout.hourly_item,
                 parent,
                 false);
-        return new HourlyAdapter(shhourly);
+        return new HourlyViewHolder(view);
         //return new HourlyAdapter.ViewHolder(view);
     }
 
