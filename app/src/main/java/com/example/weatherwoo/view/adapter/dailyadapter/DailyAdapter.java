@@ -1,6 +1,7 @@
 package com.example.weatherwoo.view.adapter.dailyadapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,10 +9,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.weatherwoo.R;
 import com.example.weatherwoo.model.Daily;
 
 import java.util.List;
+import java.lang.String;
 
 public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.DailyViewHolder> {
 
@@ -36,6 +39,9 @@ public DailyAdapter(List<Daily> dailyList)
 
     @Override
     public void onBindViewHolder(@NonNull DailyViewHolder holder, int position) {
+
+
+
 
     }
 
