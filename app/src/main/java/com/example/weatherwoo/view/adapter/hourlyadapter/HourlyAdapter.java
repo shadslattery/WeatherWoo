@@ -4,55 +4,59 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherwoo.R;
-import com.example.weatherwoo.model.Hourly;
-import com.example.weatherwoo.view.adapter.hourlyadapter.HourlyAdapter;
+import com.example.weatherwoo.model.HourlyDatum;
 
 import java.util.List;
+
 
 public class HourlyAdapter extends RecyclerView.Adapter<HourlyAdapter.HourlyViewHolder> {
 
     private Context context;
-    private List<Hourly> hourlyList;
+    private List<HourlyDatum> hourlyDatumList;
 
-    public HourlyAdapter(List<Hourly> hourlyList)
-    {
-        this.hourlyList=hourlyList;}
+    public HourlyAdapter(List<HourlyDatum> hourlyDatumList){
+
+        this.hourlyDatumList = hourlyDatumList;
+    }
 
     @NonNull
     @Override
-    public HourlyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        context = parent.getContext();
-        View view = LayoutInflater.from(context).inflate(
+    public HourlyAdapter.HourlyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.hourly_item,
                 parent,
-                false);
-        return new HourlyViewHolder(view);
-        //return new HourlyAdapter.ViewHolder(view);
+                false
+        );
+        return new HourlyAdapter.HourlyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull HourlyAdapter.HourlyViewHolder holder, int position) {
-
+        HourlyDatum hourlyDatum = hourlyDatumList.get(position);
     }
-
 
     @Override
     public int getItemCount() {
-        return hourlyList.size();}
+        return hourlyDatumList.size();
+    }
 
-    class HourlyViewHolder extends RecyclerView.ViewHolder {
+    class HourlyViewHolder extends RecyclerView.ViewHolder{
+        ImageView hourlyDatumList;
+        TextView forcast_Low, forcast_High, forcast_Time;
 
-        public HourlyViewHolder(@NonNull View wooView) {
-            super((wooView));
+        public HourlyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            hourlyDatumList = itemView.findViewById(R.id.ivWeatherIcon);
+            forcast_High = itemView.findViewById(R.id.tvHigh);
+
         }
     }
 
-
 }
-
