@@ -1,17 +1,17 @@
-package com.example.weatherwoo.woorepository;
+package com.example.weatherwoo.repository;
+
+import android.database.Observable;
 
 import com.example.weatherwoo.model.WeatherResponse;
-import com.example.weatherwoo.woorepository.remote.RetrofitInstance;
-import com.example.weatherwoo.woorepository.remote.WeatherService;
-
-import java.util.Observable;
+import com.example.weatherwoo.repository.remote.RetrofitInstance;
+import com.example.weatherwoo.repository.remote.WeatherService;
 
 import retrofit2.Call;
 
- public  class Repository {
+class Repository {
 
     private static final String API_KEY = "";
-        private WeatherService service;
+    private WeatherService service;
 
     private Repository() {
         service = RetrofitInstance
@@ -19,8 +19,8 @@ import retrofit2.Call;
                 .create(WeatherService.class);
     }
 
-    private static final class InstanceHolder { /* modules are responsible for handling data operations. */
-       private static final Repository INSTANCE = new Repository(); /* Objects to store their states */
+    private static final class InstanceHolder {
+        private static final Repository INSTANCE = new Repository();
     }
 
     public static Repository getInstance() {
@@ -36,10 +36,11 @@ import retrofit2.Call;
     }
 
     public Observable<WeatherResponse> getWeatherObservable(String longitude, String latitude) {
-      return service.getWeatherObservable(
-        API_KEY,
-        longitude,
-        latitude
-      );
+        return service.getWeatherObservable(
+                API_KEY,
+                longitude,
+                latitude
+        );
     }
+
 }
