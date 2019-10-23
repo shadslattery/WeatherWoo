@@ -1,11 +1,10 @@
-package com.example.weatherwoo.repository.remote;
-
-import android.database.Observable;
+package com.example.weatherwoo.woorepository.remote;
 
 import com.example.weatherwoo.model.WeatherResponse;
 
 import io.reactivex.Flowable;
 import io.reactivex.Maybe;
+import io.reactivex.Observable;
 import io.reactivex.Single;
 import retrofit2.Call;
 import retrofit2.http.GET;

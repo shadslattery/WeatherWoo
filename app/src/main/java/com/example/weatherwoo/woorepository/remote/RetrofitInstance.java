@@ -1,4 +1,4 @@
-package com.example.weatherwoo.repository.remote;
+package com.example.weatherwoo.woorepository.remote;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
