@@ -18,6 +18,7 @@ import com.example.weatherwoo.model.WeatherResponse;
 import com.example.weatherwoo.view.NameViewModel;
 import com.example.weatherwoo.view.adapter.dailyadapter.DailyAdapter;
 import com.example.weatherwoo.view.adapter.hourlyadapter.HourlyAdapter;
+import com.google.android.material.textview.MaterialTextView;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     // Declaring variables
     private NameViewModel viewModel;
     private RecyclerView rvHourly, rvDaily;
+    private MaterialTextView tvTemp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +46,16 @@ public class MainActivity extends AppCompatActivity {
         rvDaily = findViewById(R.id.rv_daily);
         setupDailyRecyclerView();
 
+        tvTemp = findViewById(R.id.tv_temp);
+
         LoadWeather();
     }
 
     private void setupHourlyRecyclerView() {
-
+       // rvHourly.setLayoutManager(new LinearLayoutManager(this));
+        rvHourly.setHasFixedSize(true);
+        rvHourly.addItemDecoration(new DividerItemDecoration(this,
+                    DividerItemDecoration.HORIZONTAL));
     }
 
     private void setupDailyRecyclerView() {
@@ -66,9 +73,9 @@ public class MainActivity extends AppCompatActivity {
 
                 WeatherResponse weatherResponse = response.body();
                 if (weatherResponse != null) {
-                    // Load Currently
+
                     // Todo:
-                   // LoadCurrently(weatherResponse.getCurrently());
+                    LoadCurrently(weatherResponse.getCurrently());
 
                     //Load Hourly
                     // Todo:
@@ -89,6 +96,9 @@ public class MainActivity extends AppCompatActivity {
     private void LoadCurrently(Currently currently) {
 
         // Todo: Pass data into views
+        double tempAsDouble = currently.getTemperature();
+        String string = String.valueOf(tempAsDouble);
+        tvTemp.setText(string);
 
     }
 
