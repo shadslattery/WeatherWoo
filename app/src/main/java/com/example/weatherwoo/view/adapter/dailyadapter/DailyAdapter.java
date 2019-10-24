@@ -5,13 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherwoo.R;
+import com.example.weatherwoo.model.Daily;
 import com.example.weatherwoo.model.DailyDatum;
+import com.google.android.material.textview.MaterialTextView;
 
 import java.util.List;
 
@@ -20,25 +21,31 @@ public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.DailyViewHol
     private Context context;
     private List<DailyDatum> dailyDatumList;
 
+    // Can use this constructor or one below
     public DailyAdapter(List<DailyDatum> dailyDatumList){
-
         this.dailyDatumList = dailyDatumList;
+    }
+    // Can use this Constructor or one above
+    public DailyAdapter(Daily daily) {
+        this.dailyDatumList = daily.getData();
     }
 
     @NonNull
     @Override
     public DailyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(
+        context = parent.getContext();
+        View theView = LayoutInflater.from(context).inflate(
                 R.layout.daily_item,
                 parent,
                 false
         );
-        return new DailyViewHolder(view);
+        return new DailyViewHolder(theView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull DailyViewHolder holder, int position) {
-        DailyDatum dailyDatum = dailyDatumList.get(position);
+        DailyDatum data = dailyDatumList.get(position);
+        holder.setDailyWeather(data);
     }
 
     @Override
@@ -47,14 +54,27 @@ public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.DailyViewHol
     }
 
     class DailyViewHolder extends RecyclerView.ViewHolder{
-        ImageView dailyDatumList;
-      TextView forcast_Low, forcast_High, forcast_Time;
+        private MaterialTextView tvTime, tvHigh, tvLow;
+        private ImageView ivWeatherIcon;
 
-        public DailyViewHolder(@NonNull View itemView) {
+        DailyViewHolder(@NonNull View itemView) {
             super(itemView);
-            dailyDatumList = itemView.findViewById(R.id.ivWeatherIcon);
-            forcast_High = itemView.findViewById(R.id.tvHigh);
+            tvTime = itemView.findViewById(R.id.tvTime);
+            tvHigh = itemView.findViewById(R.id.tvHigh);
+            tvLow = itemView.findViewById(R.id.tvLow);
+            ivWeatherIcon = itemView.findViewById(R.id.ivWeatherIcon);
+        }
 
+        void setDailyWeather(DailyDatum data) {
+            String high = getRoundedTemp(data.getTemperatureHigh());
+            String low =  getRoundedTemp(data.getTemperatureLow());
+
+                tvHigh.setText(high);
+                tvLow.setText(low);
+        }
+
+        String getRoundedTemp(Double temp) {
+            return String.valueOf(Math.round(temp));
         }
     }
 

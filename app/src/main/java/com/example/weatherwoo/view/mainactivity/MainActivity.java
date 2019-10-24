@@ -67,9 +67,11 @@ public class MainActivity extends AppCompatActivity {
                 if (weatherResponse != null) {
                     // Load Currently
                     // Todo:
+                   // LoadCurrently(weatherResponse.getCurrently());
 
                     //Load Hourly
                     // Todo:
+                    // LoadHourly(weatherResponse.getHourly());
 
                     // Load Daily
                     LoadDaily(weatherResponse.getDaily());
@@ -86,10 +88,11 @@ public class MainActivity extends AppCompatActivity {
     private void LoadCurrently(Currently currently) {
 
         // Todo: Pass data into views
+
     }
 
     private void LoadHourly(Hourly hourly) {
-
+        //HourlyAdapter adapter = new HourlyAdapter(hourly.getData());
     }
 
     private void LoadDaily(Daily daily) {

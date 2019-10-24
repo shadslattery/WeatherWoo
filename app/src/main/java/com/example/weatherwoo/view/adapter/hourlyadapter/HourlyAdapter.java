@@ -5,13 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherwoo.R;
+import com.example.weatherwoo.model.Hourly;
 import com.example.weatherwoo.model.HourlyDatum;
+import com.google.android.material.textview.MaterialTextView;
 
 import java.util.List;
 
@@ -26,20 +27,26 @@ public class HourlyAdapter extends RecyclerView.Adapter<HourlyAdapter.HourlyView
         this.hourlyDatumList = hourlyDatumList;
     }
 
+    public HourlyAdapter(Hourly hourly) {
+        this.hourlyDatumList = hourly.getData();
+    }
+
     @NonNull
     @Override
-    public HourlyAdapter.HourlyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(
+    public HourlyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        context = parent.getContext();
+        View theView = LayoutInflater.from(context).inflate(
                 R.layout.hourly_item,
                 parent,
                 false
         );
-        return new HourlyAdapter.HourlyViewHolder(view);
+        return new HourlyViewHolder(theView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull HourlyAdapter.HourlyViewHolder holder, int position) {
-        HourlyDatum hourlyDatum = hourlyDatumList.get(position);
+        HourlyDatum data =hourlyDatumList.get(position);
+        holder.setHourlyWeather(data);
     }
 
     @Override
@@ -48,15 +55,27 @@ public class HourlyAdapter extends RecyclerView.Adapter<HourlyAdapter.HourlyView
     }
 
     class HourlyViewHolder extends RecyclerView.ViewHolder{
-        ImageView hourlyDatumList;
-        TextView forcast_Low, forcast_High, forcast_Time;
+        private MaterialTextView tvTime, tvHigh, tvLow;
+        private ImageView ivWeatherIcon;
 
-        public HourlyViewHolder(@NonNull View itemView) {
+        HourlyViewHolder(@NonNull View itemView) {
             super(itemView);
-            hourlyDatumList = itemView.findViewById(R.id.ivWeatherIcon);
-            forcast_High = itemView.findViewById(R.id.tvHigh);
-
+            tvTime = itemView.findViewById(R.id.tvTime);
+            tvHigh = itemView.findViewById(R.id.tvHigh);
+            tvLow = itemView.findViewById(R.id.tvLow);
+            ivWeatherIcon = itemView.findViewById(R.id.ivWeatherIcon);
         }
-    }
 
+        void setHourlyWeather (HourlyDatum data) {
+            String high = getRoundedTemp(data.getTemperature());
+            String low = getRoundedTemp(data.getTemperature());
+
+                tvHigh.setText(high);
+                tvLow.setText(low);
+        }
+
+            String getRoundedTemp(Double temp) {
+            return String.valueOf(Math.round(temp));
+            }
+    }
 }
