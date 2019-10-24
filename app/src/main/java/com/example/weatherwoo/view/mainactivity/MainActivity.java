@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
     private void LoadCurrently(Currently currently) {
 
         // Todo: Pass data into views
-        double tempAsDouble = currently.getTemperature();
+        long tempAsDouble = Math.round(currently.getTemperature());
         String string = String.valueOf(tempAsDouble);
         tvTemp.setText(string);
 
