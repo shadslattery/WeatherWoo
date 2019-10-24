@@ -17,6 +17,7 @@ import com.example.weatherwoo.model.Hourly;
 import com.example.weatherwoo.model.WeatherResponse;
 import com.example.weatherwoo.view.NameViewModel;
 import com.example.weatherwoo.view.adapter.dailyadapter.DailyAdapter;
+import com.example.weatherwoo.view.adapter.hourlyadapter.HourlyAdapter;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
                     //Load Hourly
                     // Todo:
-                    // LoadHourly(weatherResponse.getHourly());
+                    LoadHourly(weatherResponse.getHourly());
 
                     // Load Daily
                     LoadDaily(weatherResponse.getDaily());
@@ -92,7 +93,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void LoadHourly(Hourly hourly) {
-        //HourlyAdapter adapter = new HourlyAdapter(hourly.getData());
+        HourlyAdapter adapter = new HourlyAdapter(hourly.getData());
+        rvHourly.setAdapter(adapter);
     }
 
     private void LoadDaily(Daily daily) {

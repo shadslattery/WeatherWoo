@@ -44,8 +44,8 @@ public class HourlyAdapter extends RecyclerView.Adapter<HourlyAdapter.HourlyView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HourlyAdapter.HourlyViewHolder holder, int position) {
-        HourlyDatum data =hourlyDatumList.get(position);
+    public void onBindViewHolder(@NonNull HourlyViewHolder holder, int position) {
+        HourlyDatum data = hourlyDatumList.get(position);
         holder.setHourlyWeather(data);
     }
 
@@ -55,23 +55,22 @@ public class HourlyAdapter extends RecyclerView.Adapter<HourlyAdapter.HourlyView
     }
 
     class HourlyViewHolder extends RecyclerView.ViewHolder{
-        private MaterialTextView tvTime, tvHigh, tvLow;
+        private MaterialTextView tvTime, tvtemp;
         private ImageView ivWeatherIcon;
 
         HourlyViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTime = itemView.findViewById(R.id.tvTime);
-            tvHigh = itemView.findViewById(R.id.tvHigh);
-            tvLow = itemView.findViewById(R.id.tvLow);
+            tvtemp = itemView.findViewById(R.id.tv_temp);
             ivWeatherIcon = itemView.findViewById(R.id.ivWeatherIcon);
         }
 
         void setHourlyWeather (HourlyDatum data) {
             String high = getRoundedTemp(data.getTemperature());
-            String low = getRoundedTemp(data.getTemperature());
+            // String low = getRoundedTemp(data.getTemperature());
 
-                tvHigh.setText(high);
-                tvLow.setText(low);
+                tvtemp.setText(high);
+               // tvLow.setText(low);
         }
 
             String getRoundedTemp(Double temp) {
