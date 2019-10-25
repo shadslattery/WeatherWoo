@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
        Toast.makeText(MainActivity.this, String.valueOf(tempAsDouble),Toast.LENGTH_SHORT).show();
         //String getRoundedTemp(Double)
         String string = String.valueOf(Math.round(currently.getTemperature()));
-        tvTemp.setText(string);
+        tvTemp.setText(string +"\u00B0");
 
     }
 
