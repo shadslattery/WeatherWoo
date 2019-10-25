@@ -29,41 +29,46 @@ public class Repository {
         return InstanceHolder.INSTANCE;
     }
 
-        public Call<WeatherResponse> getWeatherCall(String longitude, String latitude) {
+        public Call<WeatherResponse> getWeatherCall(String latitude, String longitude) {
             return service.getWeatherCall(
                     API_KEY,
-                    longitude,
-                    latitude
+                    latitude,
+                    longitude
             );
         }
-        public Single<WeatherResponse> getWeatherSingle(String longitude, String latitude) {
+        public Single<WeatherResponse> getWeatherSingle(String latitude, String longitude) {
             return service.getWeatherSingle(
+
                     API_KEY,
-                    longitude,
-                    latitude
+                    latitude,
+                    longitude
+
+                    /*@Path("apiKey") String API_KEY,
+                    @Path("latitude") String latitude,
+                    @Path("longitude") String longitude*/
             );
         }
-        public Observable<WeatherResponse> getWeatherObservable(String longitude, String latitude) {
+        public Observable<WeatherResponse> getWeatherObservable(String latitude, String longitude ) {
             return service.getWeatherObservable(
                     API_KEY,
-                    longitude,
-                    latitude
+                    latitude,
+                    longitude
             );
         }
 
-        public Maybe<WeatherResponse> getWeatherMaybe(String longitude, String latitude) {
+        public Maybe<WeatherResponse> getWeatherMaybe(String latitude, String longitude ) {
             return service.getWeatherMaybe(
                     API_KEY,
-                    longitude,
-                    latitude
+                    latitude,
+                    longitude
             );
         }
 
-        public Flowable<WeatherResponse> getWeatherFlowable(String longitude, String latitude) {
+        public Flowable<WeatherResponse> getWeatherFlowable(String latitude , String longitude) {
             return service.getWeatherFlowable(
                     API_KEY,
-                    longitude,
-                    latitude
+                    latitude,
+                    longitude
             );
         }
 

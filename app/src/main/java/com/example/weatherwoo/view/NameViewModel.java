@@ -24,24 +24,24 @@ public class NameViewModel extends AndroidViewModel {
         this.repo = Repository.getInstance();
     }
 
-    public Call<WeatherResponse> getWeatherCall(String longitude, String latitude) {
-        return repo.getWeatherCall(longitude, latitude);
+    public Call<WeatherResponse> getWeatherCall(String latitude, String longitude) {
+        return repo.getWeatherCall(latitude, longitude);
     }
 
-    public Single<WeatherResponse> getWeatherSingle(String longitude, String latitude) {
-        return repo.getWeatherSingle(longitude,latitude);
+    public Single<WeatherResponse> getWeatherSingle(String latitude, String longitude ) {
+        return repo.getWeatherSingle(latitude, longitude);
     }
 
-    public Observable<WeatherResponse> getWeatherObservable(String longitude, String latitude){
-        return repo.getWeatherObservable(longitude, latitude);
+    public Observable<WeatherResponse> getWeatherObservable(String latitude, String longitude ){
+        return repo.getWeatherObservable(latitude, longitude);
     }
 
-    public Maybe<WeatherResponse> getWeatherMaybe(String longitude, String latitude) {
-        return repo.getWeatherMaybe(longitude, latitude);
+    public Maybe<WeatherResponse> getWeatherMaybe(String latitude, String longitude ) {
+        return repo.getWeatherMaybe(latitude, longitude);
     }
 
-    public Flowable<WeatherResponse> getWeatherFlowable(String longitude, String latitude) {
-        return repo.getWeatherFlowable(longitude, latitude);
+    public Flowable<WeatherResponse> getWeatherFlowable(String latitude, String longitude) {
+        return repo.getWeatherFlowable(latitude, longitude);
     }
 
     }

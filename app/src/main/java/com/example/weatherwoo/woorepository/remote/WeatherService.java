@@ -16,8 +16,8 @@ public interface WeatherService {
     @GET(RemoteConstants.WEATHER_PATH)
     Call<WeatherResponse> getWeatherCall(
             @Path("apiKey") String apiKey,
-            @Path("longitude") String longitude,
-            @Path("latitude") String latitude
+            @Path("latitude") String latitude,
+            @Path("longitude") String longitude
     );
     //endregion
 
@@ -25,29 +25,29 @@ public interface WeatherService {
     @GET(RemoteConstants.WEATHER_PATH)
     Single<WeatherResponse> getWeatherSingle(
             @Path("apiKey") String apiKey,
-            @Path("longitude") String longitude,
-            @Path("latitude") String latitude
+            @Path("latitude") String latitude,
+            @Path("longitude") String longitude
     );
 
     @GET(RemoteConstants.WEATHER_PATH)
     Observable<WeatherResponse> getWeatherObservable(
             @Path("apiKey") String apiKey,
-            @Path("longitude") String longitude,
-            @Path("latitude") String latitude
+            @Path("latitude") String latitude,
+            @Path("longitude") String longitude
     );
 
     @GET(RemoteConstants.WEATHER_PATH)
     Maybe<WeatherResponse> getWeatherMaybe(
             @Path("apiKey") String apiKey,
-            @Path("longitude") String longitude,
-            @Path("latitude") String latitude
+            @Path("latitude") String latitude,
+            @Path("longitude") String longitude
     );
 
     @GET(RemoteConstants.WEATHER_PATH)
     Flowable<WeatherResponse> getWeatherFlowable(
             @Path("apiKey") String apiKey,
-            @Path("longitude") String longitude,
-            @Path("latitude") String latitude
+            @Path("latitude") String latitude,
+            @Path("longitude") String longitude
     );
     //endregion
 }

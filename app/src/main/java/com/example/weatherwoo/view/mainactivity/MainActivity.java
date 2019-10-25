@@ -26,8 +26,8 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String LATITUDE = "9.081999";
-    private static final String LONGITUDE = "8.675277";
+    private static final String LATITUDE = "41.0793";
+    private static final String LONGITUDE = "85.1394";
 
     // Declaring variables
     private NameViewModel viewModel;
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void LoadWeather() {
-        viewModel.getWeatherCall(LATITUDE, LONGITUDE).enqueue(new Callback<WeatherResponse>() {
+        viewModel.getWeatherCall(LONGITUDE, LONGITUDE).enqueue(new Callback<WeatherResponse>() {
             @Override
             public void onResponse(@NonNull Call<WeatherResponse> call, @NonNull Response<WeatherResponse> response) {
                 Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
