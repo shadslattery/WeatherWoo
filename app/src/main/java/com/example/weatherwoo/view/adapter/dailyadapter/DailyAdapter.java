@@ -1,6 +1,7 @@
 package com.example.weatherwoo.view.adapter.dailyadapter;
 
 import android.content.Context;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.example.weatherwoo.model.Daily;
 import com.example.weatherwoo.model.DailyDatum;
 import com.google.android.material.textview.MaterialTextView;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.DailyViewHolder> {
@@ -65,12 +67,36 @@ public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.DailyViewHol
             ivWeatherIcon = itemView.findViewById(R.id.ivWeatherIcon);
         }
 
-        void setDailyWeather(DailyDatum data) {
+
+            void setDailyWeather(DailyDatum data) {
+            String day = getDayOfWeek(data.getTime());
             String high = getRoundedTemp(data.getTemperatureHigh());
             String low =  getRoundedTemp(data.getTemperatureLow());
 
                 tvHigh.setText(high);
                 tvLow.setText(low);
+                tvTime.setText(day);
+
+            }
+
+        /**
+         * this method will convert a long into Current Day in the week
+         * @param time takes a long type
+         * @return string day of the week
+         */
+
+             String getDayOfWeek (long time) {
+                 // Instance of Calendar
+                 Calendar calendar = Calendar.getInstance();
+
+                 // Set the time parameter to calender
+                 calendar.setTimeInMillis(time * 1000);
+
+                 return DateFormat.format("EEEE", calendar).toString();
+
+
+             }
+            //Using format we extract the current day of the week
         }
 
         String getRoundedTemp(Double temp) {
@@ -78,4 +104,3 @@ public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.DailyViewHol
         }
     }
 
-}

@@ -113,5 +113,6 @@ public class MainActivity extends AppCompatActivity {
     private void LoadDaily(Daily daily) {
         DailyAdapter adapter = new DailyAdapter(daily.getData());
         rvDaily.setAdapter(adapter);
+
     }
 }
