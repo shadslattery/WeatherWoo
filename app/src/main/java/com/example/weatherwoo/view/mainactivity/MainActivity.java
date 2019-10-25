@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void LoadWeather() {
-        viewModel.getWeatherCall(LONGITUDE, LONGITUDE).enqueue(new Callback<WeatherResponse>() {
+        viewModel.getWeatherCall(LATITUDE, LONGITUDE).enqueue(new Callback<WeatherResponse>() {
             @Override
             public void onResponse(@NonNull Call<WeatherResponse> call, @NonNull Response<WeatherResponse> response) {
                 Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
@@ -93,11 +93,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
     private void LoadCurrently(Currently currently) {
 
         // Todo: Pass data into views
-        long tempAsDouble = Math.round(currently.getTemperature());
-        String string = String.valueOf(tempAsDouble);
+       Double tempAsDouble = (currently.getTemperature());
+       Toast.makeText(MainActivity.this, String.valueOf(tempAsDouble),Toast.LENGTH_SHORT).show();
+        //String getRoundedTemp(Double)
+        String string = String.valueOf(Math.round(currently.getTemperature()));
         tvTemp.setText(string);
 
     }
