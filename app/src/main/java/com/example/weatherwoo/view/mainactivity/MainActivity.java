@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         //String getRoundedTemp(Double)
         String string = String.valueOf(Math.round(currently.getTemperature()));
         tvTemp.setText(string + "\u00B0");
-
+        }
 
     private void LoadHourly(Hourly hourly) {
         HourlyAdapter adapter = new HourlyAdapter(hourly.getData());

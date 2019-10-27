@@ -75,13 +75,16 @@ public class HourlyAdapter extends RecyclerView.Adapter<HourlyAdapter.HourlyView
                 tvtemp.setText(high);
                // tvLow.setText(low);
 
+            // This is to Display the Time into the Hourly fields -- NOT working
+
             long matTime = (data.getTime());
             SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm a");
-            //Toast.makeText(MainActivity.this, String.valueOf(matTime), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(MainActivity.this, String.valueOf(matTime), Toast.LENGTH_SHORT).show();
             String formattedDate = (dateFormat.format(matTime));
-            //Toast.makeText(this, String.valueOf(dateFormat), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(MainActivity.this, String.valueOf(dateFormat), Toast.LENGTH_SHORT).show();
             tvTime.setText(formattedDate);
-        }
+
+            }
 
             String getRoundedTemp(Double temp) {
             return String.valueOf(Math.round(temp));
