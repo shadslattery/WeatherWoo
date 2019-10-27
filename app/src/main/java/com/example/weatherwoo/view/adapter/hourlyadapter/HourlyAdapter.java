@@ -14,6 +14,7 @@ import com.example.weatherwoo.model.Hourly;
 import com.example.weatherwoo.model.HourlyDatum;
 import com.google.android.material.textview.MaterialTextView;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 
@@ -65,12 +66,21 @@ public class HourlyAdapter extends RecyclerView.Adapter<HourlyAdapter.HourlyView
             ivWeatherIcon = itemView.findViewById(R.id.ivWeatherIcon);
         }
 
+
+
         void setHourlyWeather (HourlyDatum data) {
             String high = getRoundedTemp(data.getTemperature());
             // String low = getRoundedTemp(data.getTemperature());
 
                 tvtemp.setText(high);
                // tvLow.setText(low);
+
+            long matTime = (data.getTime());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm a");
+            //Toast.makeText(MainActivity.this, String.valueOf(matTime), Toast.LENGTH_SHORT).show();
+            String formattedDate = (dateFormat.format(matTime));
+            //Toast.makeText(this, String.valueOf(dateFormat), Toast.LENGTH_SHORT).show();
+            tvTime.setText(formattedDate);
         }
 
             String getRoundedTemp(Double temp) {

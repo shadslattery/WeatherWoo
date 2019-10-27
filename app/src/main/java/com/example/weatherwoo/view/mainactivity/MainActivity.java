@@ -27,12 +27,15 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     private static final String LATITUDE = "41.0793";
-    private static final String LONGITUDE = "85.1394";
+    private static final String LONGITUDE = "-85.1394";
 
     // Declaring variables
     private NameViewModel viewModel;
     private RecyclerView rvHourly, rvDaily;
     private MaterialTextView tvTemp;
+    private MaterialTextView tvCity;
+    private MaterialTextView tvTime;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         setupDailyRecyclerView();
 
         tvTemp = findViewById(R.id.tv_temp);
+        tvCity = findViewById(R.id.tv_city);
+        tvTime = findViewById(R.id.tvTime);
 
         LoadWeather();
     }
@@ -74,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 WeatherResponse weatherResponse = response.body();
                 if (weatherResponse != null) {
 
+                    // Load Currently
                     // Todo:
                     LoadCurrently(weatherResponse.getCurrently());
 
@@ -95,15 +101,14 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void LoadCurrently(Currently currently) {
-
+        // This Displays the Current Temperature in the Current Filed
         // Todo: Pass data into views
-       Double tempAsDouble = (currently.getTemperature());
-       Toast.makeText(MainActivity.this, String.valueOf(tempAsDouble),Toast.LENGTH_SHORT).show();
+        Double tempAsDouble = (currently.getTemperature());
+        //Toast.makeText(MainActivity.this, String.valueOf(tempAsDouble), Toast.LENGTH_SHORT).show();
         //String getRoundedTemp(Double)
         String string = String.valueOf(Math.round(currently.getTemperature()));
-        tvTemp.setText(string +"\u00B0");
+        tvTemp.setText(string + "\u00B0");
 
-    }
 
     private void LoadHourly(Hourly hourly) {
         HourlyAdapter adapter = new HourlyAdapter(hourly.getData());
