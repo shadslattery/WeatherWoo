@@ -20,16 +20,18 @@ import com.example.weatherwoo.view.adapter.dailyadapter.DailyAdapter;
 import com.example.weatherwoo.view.adapter.hourlyadapter.HourlyAdapter;
 import com.google.android.material.textview.MaterialTextView;
 
-import java.util.TimeZone;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String LATITUDE = "41.0793";
-    private static final String LONGITUDE = "-85.1394";
+    private static final String LATITUDE = "37.7749";
+    private static final String LONGITUDE = "-122.4194";
+// LATITUDE "41.0793"   LONGITUDE  "-85.1394"  Indianapolis
+// LATITUDE "40.4406"   LONGITUDE  "-79.9959"  Pittsburgh
+// LATITUDE "41.8781"   LONGITUDE  "-87.6298"  Chicago
+// LATITUDE "37.7749"   LONGITUDE  "-122.4194" San Franciso
 
 
 
@@ -85,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
                     // Load Currently
                     // Todo:
-                    LoadCurrently(weatherResponse.getCurrently());
+                    LoadCurrently(weatherResponse);
 
                     //Load Hourly
                     // Todo:
@@ -104,7 +106,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void LoadCurrently(Currently currently) {
+    private void LoadCurrently(WeatherResponse weatherResponse) {  // this is a Parameter
+        Currently currently = weatherResponse.getCurrently();
         // This Displays the Current Temperature in the Current Filed
         // Todo: Pass data into views
         Double tempAsDouble = (currently.getTemperature());
@@ -114,8 +117,9 @@ public class MainActivity extends AppCompatActivity {
         tvTemp.setText(string + "\u00B0");
 
 
-        String timezoneID = TimeZone.getDefault().getID();
-        tvCity.setText(timezoneID);
+        String timezoneID = weatherResponse.getTimezone();
+        String[] timezoneID2 = timezoneID.split("/");
+        tvCity.setText(timezoneID2[1]);
         }
 
     private void LoadHourly(Hourly hourly) {

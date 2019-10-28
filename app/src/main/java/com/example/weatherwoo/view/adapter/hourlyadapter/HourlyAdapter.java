@@ -75,7 +75,7 @@ public class HourlyAdapter extends RecyclerView.Adapter<HourlyAdapter.HourlyView
                 tvtemp.setText(high);
                // tvLow.setText(low);
 
-            // This is to Display the Time into the Hourly fields -- NOT working
+            // This is to Display the Time into the Hourly fields -- NOT working Correctly
 
             long matTime = (data.getTime());
             SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm a");
