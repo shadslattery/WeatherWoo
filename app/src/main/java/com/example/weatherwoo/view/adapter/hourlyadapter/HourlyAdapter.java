@@ -16,6 +16,7 @@ import com.google.android.material.textview.MaterialTextView;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 
 public class HourlyAdapter extends RecyclerView.Adapter<HourlyAdapter.HourlyViewHolder> {
@@ -76,11 +77,12 @@ public class HourlyAdapter extends RecyclerView.Adapter<HourlyAdapter.HourlyView
                // tvLow.setText(low);
 
             // This is to Display the Time into the Hourly fields -- NOT working Correctly
-
             long matTime = (data.getTime());
-            SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm a");
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("ha", Locale.getDefault());
+
         //Toast.makeText(MainActivity.this, String.valueOf(matTime), Toast.LENGTH_SHORT).show();
-            String formattedDate = (dateFormat.format(matTime));
+            String formattedDate = (dateFormat.format(matTime * 1000));
         //Toast.makeText(MainActivity.this, String.valueOf(dateFormat), Toast.LENGTH_SHORT).show();
             tvTime.setText(formattedDate);
 

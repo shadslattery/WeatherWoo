@@ -26,12 +26,13 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String LATITUDE = "37.7749";
-    private static final String LONGITUDE = "-122.4194";
+    private static final String LATITUDE = "41.0793";
+    private static final String LONGITUDE = "-85.1394";
 // LATITUDE "41.0793"   LONGITUDE  "-85.1394"  Indianapolis
 // LATITUDE "40.4406"   LONGITUDE  "-79.9959"  Pittsburgh
 // LATITUDE "41.8781"   LONGITUDE  "-87.6298"  Chicago
 // LATITUDE "37.7749"   LONGITUDE  "-122.4194" San Franciso
+// LATITUDE "37.3382"  LONGITUDE  "-121.8863" San Jose
 
 
 
