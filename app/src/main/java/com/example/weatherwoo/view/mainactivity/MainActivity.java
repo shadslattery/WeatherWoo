@@ -20,6 +20,8 @@ import com.example.weatherwoo.view.adapter.dailyadapter.DailyAdapter;
 import com.example.weatherwoo.view.adapter.hourlyadapter.HourlyAdapter;
 import com.google.android.material.textview.MaterialTextView;
 
+import java.util.TimeZone;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String LATITUDE = "41.0793";
     private static final String LONGITUDE = "-85.1394";
+
+
 
     // Declaring variables
     private NameViewModel viewModel;
@@ -50,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
         setupDailyRecyclerView();
 
         tvTemp = findViewById(R.id.tv_temp);
-        tvCity = findViewById(R.id.tv_city);
         tvTime = findViewById(R.id.tvTime);
+        tvCity = findViewById(R.id.tv_city);
 
         LoadWeather();
     }
@@ -108,6 +112,10 @@ public class MainActivity extends AppCompatActivity {
         //String getRoundedTemp(Double)
         String string = String.valueOf(Math.round(currently.getTemperature()));
         tvTemp.setText(string + "\u00B0");
+
+
+        String timezoneID = TimeZone.getDefault().getID();
+        tvCity.setText(timezoneID);
         }
 
     private void LoadHourly(Hourly hourly) {

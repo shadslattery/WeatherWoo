@@ -62,7 +62,7 @@ public class HourlyDatum {
     private String precipType;
 
     public Long getTime() {
-        return time;
+       return time;
     }
 
     public void setTime(Long time) {
