@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.weatherwoo.Commons.WeatherUtils;
 import com.example.weatherwoo.R;
 import com.example.weatherwoo.model.Hourly;
 import com.example.weatherwoo.model.HourlyDatum;
@@ -49,6 +51,8 @@ public class HourlyAdapter extends RecyclerView.Adapter<HourlyAdapter.HourlyView
     public void onBindViewHolder(@NonNull HourlyViewHolder holder, int position) {
         HourlyDatum data = hourlyDatumList.get(position);
         holder.setHourlyWeather(data);
+        int icon = WeatherUtils.getWeatherIcon(data.getIcon());
+        Glide.with(context).load(icon).into(holder.ivWeatherIcon);
     }
 
     @Override
