@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.weatherwoo.Commons.WeatherUtils;
 import com.example.weatherwoo.R;
 import com.example.weatherwoo.model.Daily;
 import com.example.weatherwoo.model.DailyDatum;
@@ -24,9 +26,10 @@ public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.DailyViewHol
     private List<DailyDatum> dailyDatumList;
 
     // Can use this constructor or one below
-    public DailyAdapter(List<DailyDatum> dailyDatumList){
+    public DailyAdapter(List<DailyDatum> dailyDatumList) {
         this.dailyDatumList = dailyDatumList;
     }
+
     // Can use this Constructor or one above
     public DailyAdapter(Daily daily) {
         this.dailyDatumList = daily.getData();
@@ -48,6 +51,8 @@ public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.DailyViewHol
     public void onBindViewHolder(@NonNull DailyViewHolder holder, int position) {
         DailyDatum data = dailyDatumList.get(position);
         holder.setDailyWeather(data);
+       int icon = WeatherUtils.getWeatherIcon(data.getIcon());
+        Glide.with(context).load(icon).into(holder.ivWeatherIcon);
     }
 
     @Override
@@ -55,7 +60,7 @@ public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.DailyViewHol
         return dailyDatumList.size();
     }
 
-    class DailyViewHolder extends RecyclerView.ViewHolder{
+    class DailyViewHolder extends RecyclerView.ViewHolder {
         private MaterialTextView tvTime, tvHigh, tvLow;
         private ImageView ivWeatherIcon;
 
@@ -68,39 +73,41 @@ public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.DailyViewHol
         }
 
 
-            void setDailyWeather(DailyDatum data) {
+        void setDailyWeather(DailyDatum data) {
             String day = getDayOfWeek(data.getTime());
             String high = getRoundedTemp(data.getTemperatureHigh());
-            String low =  getRoundedTemp(data.getTemperatureLow());
+            String low = getRoundedTemp(data.getTemperatureLow());
 
-                tvHigh.setText(high);
-                tvLow.setText(low);
-                tvTime.setText(day);
+            tvHigh.setText(high);
+            tvLow.setText(low);
+            tvTime.setText(day);
 
+        }
+
+            /**
+             * this method will convert a long into Current Day in the week
+             * @param time takes a long type
+             * @return string day of the week
+             */
+
+            String getDayOfWeek ( long time){
+                // Instance of Calendar
+                Calendar calendar = Calendar.getInstance();
+
+                // Set the time parameter to calender
+                calendar.setTimeInMillis(time * 1000);
+
+                return DateFormat.format("EEEE", calendar).toString();
             }
 
-        /**
-         * this method will convert a long into Current Day in the week
-         * @param time takes a long type
-         * @return string day of the week
-         */
 
-             String getDayOfWeek (long time) {
-                 // Instance of Calendar
-                 Calendar calendar = Calendar.getInstance();
-
-                 // Set the time parameter to calender
-                 calendar.setTimeInMillis(time * 1000);
-
-                 return DateFormat.format("EEEE", calendar).toString();
-
-
-             }
-            //Using format we extract the current day of the week
         }
+            //Using format we extract the current day of the week
+
 
         String getRoundedTemp(Double temp) {
             return String.valueOf(Math.round(temp));
         }
     }
+
 
