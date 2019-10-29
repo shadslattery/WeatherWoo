@@ -51,8 +51,10 @@ public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.DailyViewHol
     public void onBindViewHolder(@NonNull DailyViewHolder holder, int position) {
         DailyDatum data = dailyDatumList.get(position);
         holder.setDailyWeather(data);
-       int icon = WeatherUtils.getWeatherIcon(data.getIcon());
-        Glide.with(context).load(icon).into(holder.ivWeatherIcon);
+       int icon = WeatherUtils.getWeatherIcon(data.getIcon()); // Getter: Gets the Information from data does the process
+                // process for getWeatherIcon, which is located in WeatherUtils. Saves getIcon into the icon.
+        Glide.with(context).load(icon).into(holder.ivWeatherIcon); // Setter: sits the icon into the ivWeatherIcon
+                // Glide has more memory space,
     }
 
     @Override
