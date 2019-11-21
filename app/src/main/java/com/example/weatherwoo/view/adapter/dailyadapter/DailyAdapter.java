@@ -104,12 +104,12 @@ public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.DailyViewHol
 
 
         }
-            //Using format we extract the current day of the week
+            //Using format we extract the current day of the week.
 
 
         String getRoundedTemp(Double temp) {
             return String.valueOf(Math.round(temp));
         }
-    }
+        }
 
 
